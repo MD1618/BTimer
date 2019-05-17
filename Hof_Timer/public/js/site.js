@@ -100,14 +100,16 @@ function getShowTime() {
     } else {
         difference = updatedTime - startTime;
     }
-    // var days = Math.floor(difference / (1000 * 60 * 60 * 24));
-    //var hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+    var hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((difference % (1000 * 60)) / 1000);
     var milliseconds = Math.floor((difference % 1000) / 100);
-    //    var milliseconds = Math.floor((difference % (1000 * 60)) / 1000).toFixed(3);
 
-    //hours = (hours < 10) ? "0" + hours : hours;
+    if (hours == 1) {
+        alert("One Hour!");
+    }
+
     minutes = (minutes < 10) ? "0" + minutes : minutes;
     seconds = (seconds < 10) ? "0" + seconds : seconds;
     //milliseconds = (milliseconds < 10) ? "0" + milliseconds : milliseconds;

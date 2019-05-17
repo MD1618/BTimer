@@ -184,6 +184,20 @@ body {
     cursor: pointer
 }
 
+.timerTotal {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    width: 100%;
+    padding: 20px 0;
+    font-size: 45px;
+    text-align: center;
+    color: #fff;
+    /* background: #A90000; */
+    cursor: pointer
+}
+
 .reset {
     position: absolute;
     bottom: 20px;
