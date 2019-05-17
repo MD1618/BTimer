@@ -14,12 +14,30 @@
     <div class="innerCircle">
         <div class="timer">00:00</div>
         <div class="startTimer play">
-            PLAY
+            START
         </div>
     </div>
 
 
 </div>
+
+<div id="rounds" class="roundsContainer">
+    <table class="roundsTable ">
+        <thead>
+            <tr>
+                <th>Round</th>
+                <th>Hof</th>
+                <th>Hold</th>
+                <th>Squeeze</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+          
+        </tbody>
+    </table>
+
+</div>
+
 <div id="buttonContainer">
 
 

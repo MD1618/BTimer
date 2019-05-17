@@ -200,11 +200,11 @@ body {
 
 .reset {
     position: absolute;
-    bottom: 20px;
+    bottom: 10px;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
-    padding: 20px 0;
+    /* padding: 20px 0; */
     font-size: 24px;
     text-align: center;
     /* background: #550000; */
@@ -223,11 +223,24 @@ body {
     transform: translate(-50%, -50%);
 }
 
-
-/* .reset:hover {
-    background: #CC0000;
+.roundsContainer {
+    /* border: 1px solid white; */
+    width: 94%;
+    max-width: 400px;
+    position: absolute;
+    top: 74%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 200px;
+    color: white;
+    overflow: hidden;
 }
 
-.lighter {
-    background: #CC0000
-} */
+.roundsTable {
+    position: relative;
+    width: 100%;
+}
+
+.roundsTable {
+    text-align: center;
+}
