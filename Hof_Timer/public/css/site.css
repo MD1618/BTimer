@@ -1,0 +1,219 @@
+:root {
+    font-size: 20px;
+}
+
+body {
+    background-color: #556;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+.navHeader {
+    color: #eee;
+    /* border:1px solid black;
+    border-radius: 4px; */
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 80%;
+    height: 50px;
+    padding: 10px;
+}
+
+.mainBox {
+    /* border:1px solid black;
+    border-radius: 4px; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    /* background-color: #556; */
+    padding: 30px;
+}
+
+.mainTimer {
+    font-size: 4em;
+    color: #eee;
+    /* position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%); */
+}
+
+.login,
+.brand {
+    display: inline-block;
+}
+
+.login {
+    position: absolute;
+    right: 10px;
+}
+
+.brand {
+    color: #eee;
+}
+
+
+/*--------------------------*/
+
+
+/*--timer-*/
+
+.secondCircle {
+    cursor: pointer;
+    /* box-sizing: border-box; */
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-bottom: 3px solid white;
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: -150px;
+    left: calc(50% - 100px);
+    padding: 2px;
+    /* background-color: rgba(0, 0, 0, 0.1); */
+    animation-name: spin;
+    -webkit-animation-name: spin;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-play-state: paused;
+    -webkit-animation-duration: 1000ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-play-state: paused;
+    -moz-animation-name: spin;
+    -moz-animation-duration: 1000ms;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    -ms-animation-name: spin;
+    -ms-animation-duration: 1000ms;
+    -ms-animation-iteration-count: infinite;
+    -ms-animation-timing-function: linear;
+    -o-transition: rotate(360deg);
+    transition: rotate(360deg);
+}
+
+@-moz-keyframes spin {
+    from {
+        -moz-transform: rotate(0deg);
+    }
+    to {
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.innerCircle {
+    /* box-sizing: border-box; */
+    border-radius: 50%;
+    /* border: 2px solid transparent; */
+    /* margin-top: 2px;
+    margin-left: 2px; */
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+#timerContainer {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 300;
+    width: 100%;
+    margin: 20px auto;
+    min-height: 60px;
+    border-top: 0px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 300;
+    width: 100%;
+    margin: 20px auto;
+    min-height: 60px;
+    border-top: 0px;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.timer {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    width: 100%;
+    padding: 20px 0;
+    font-size: 45px;
+    text-align: center;
+    color: #fff;
+    /* background: #A90000; */
+    cursor: pointer
+}
+
+.reset {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    padding: 20px 0;
+    font-size: 24px;
+    text-align: center;
+    /* background: #550000; */
+    color: white;
+    width: 14.9%;
+    /* border-left: 1px solid #990000; */
+}
+
+.play {
+    z-index: -1;
+    font-size: 16px;
+    color: white;
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/* .reset:hover {
+    background: #CC0000;
+}
+
+.lighter {
+    background: #CC0000
+} */
