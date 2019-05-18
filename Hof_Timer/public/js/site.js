@@ -14,13 +14,16 @@ var tInterval;
 var tIntervalTotal;
 var savedTime;
 var totalSavedTime;
-var paused = 0;
-var running = 0;
+
 var state = 0;
 var totalTimerState;
 var round;
 let tableRef;
 let newRow;
+
+var holdTimes = [];
+var minValue;
+var secValue;
 
 window.onload = function() {
     tableRef = document.getElementById('tableBody');
@@ -49,15 +52,11 @@ function startTimer() {
     if (tInterval == undefined) {
         tInterval = setInterval(getShowTime, 1);
         tIntervalTotal = setInterval(totalTime, 1);
+        // change 1 to 1000 above to run script every second instead of every millisecond. one other change will be needed in the getShowTime() function below for this to work. see comment there.   
     }
 
     if (state == 0) {
         startTime = new Date().getTime();
-
-
-        // change 1 to 1000 above to run script every second instead of every millisecond. one other change will be needed in the getShowTime() function below for this to work. see comment there.   
-
-
         if (round > 1) {
             let squeezeCell = newRow.insertCell(3);
             var timerValue = timerDisplay.innerHTML;
@@ -68,16 +67,7 @@ function startTimer() {
         let roundCell = newRow.insertCell(0);
         let roundValue = document.createTextNode(round);
         roundCell.appendChild(roundValue);
-
-
-
-
-        paused = 0;
-        running = 1;
-
-        startTimerButton.innerHTML = "HOF";
-
-
+        startTimerButton.innerHTML = "BREATHE";
         //state = 1;
     } else if (state == 1) {
         startTimerButton.innerHTML = "HOLD";
@@ -87,6 +77,11 @@ function startTimer() {
         hofCell.appendChild(timedValue);
         startTime = new Date().getTime();
     } else if (state == 2) {
+
+        //push minutes and seconds as individual values to an array object
+        holdTimes.push({ min: minValue, sec: secValue });
+        console.log(holdTimes[round - 1].min + ":" + holdTimes[round - 1].sec);
+
         startTimerButton.innerHTML = "SQUEEZE";
         let holdCell = newRow.insertCell(2);
         var timerValue = timerDisplay.innerHTML;
@@ -116,13 +111,7 @@ function pauseTimer() {
     } else if (!paused) {
         clearInterval(tInterval);
         savedTime = difference;
-        paused = 1;
-        running = 0;
-    } else {
 
-        // if the timer was already paused, when they click pause again, start the timer again
-
-        //startTimer();
     }
 }
 
@@ -137,16 +126,8 @@ function resetTimer() {
     state = 0;
     totalTimerState = true;
     round = 1;
-    // savedTime = 0;
-    // totalSavedTime = 0;
-    // startTime = 0;
-    // totalStartTime = 0;
-    // difference = 0;
-    // totalDifference = 0;
-    // paused = 0;
-    // running = 0;
     timerDisplay.innerHTML = '00:00';
-    totalTimerDisplay.innerHTML = '00:00';
+    totalTimerDisplay.innerHTML = '0:00:00';
     tableRef.innerHTML = "";
 }
 
@@ -163,7 +144,8 @@ function getShowTime() {
     var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-
+    minValue = minutes;
+    secValue = seconds;
     // if (hours == 1) {
     //     alert("One Hour!");
     // }
@@ -203,4 +185,9 @@ function totalTime() {
     } else {
         totalTimerDisplay.innerHTML = hours + ":" + minutes + ':' + seconds;
     }
+}
+
+function toggleLogOut() {
+
+    var logout = document.getElementById('logOutButton').classList.toggle('logoutTogg');
 }

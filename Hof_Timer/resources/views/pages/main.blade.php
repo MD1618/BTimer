@@ -25,10 +25,10 @@
     <table class="roundsTable ">
         <thead>
             <tr>
-                <th>Round</th>
-                <th>Hof</th>
-                <th>Hold</th>
-                <th>Squeeze</th>
+                <th>ROUND</th>
+                <th>BREATH</th>
+                <th>HOLD</th>
+                <th>SQUEEZE</th>
             </tr>
         </thead>
         <tbody id="tableBody">

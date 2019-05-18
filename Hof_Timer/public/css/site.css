@@ -183,12 +183,12 @@ body {
 
 .timer {
     position: absolute;
-    top: 40px;
+    top: 30px;
     left: 50%;
     transform: translate(-50%, 0%);
     width: 100%;
     padding: 20px 0;
-    font-size: 45px;
+    font-size: 60px;
     text-align: center;
     color: #fff;
     /* background: #A90000; */
@@ -197,14 +197,14 @@ body {
 
 .timerTotal {
     position: absolute;
-    top: 40px;
+    top: calc(50% - 32%);
     left: 50%;
-    transform: translate(-50%, 0%);
+    transform: translate(-50%, -50%);
     width: 100%;
     padding: 20px 0;
-    font-size: 45px;
+    font-size: 35px;
     text-align: center;
-    color: #fff;
+    color: rgb(209, 209, 209);
     /* background: #A90000; */
     cursor: pointer
 }
@@ -226,7 +226,7 @@ body {
 
 .play {
     z-index: -1;
-    font-size: 16px;
+    font-size: 22px;
     color: white;
     position: absolute;
     top: 75%;
@@ -254,4 +254,21 @@ body {
 
 .roundsTable {
     text-align: center;
+}
+
+a .nav-link {
+    color: white;
+}
+
+
+/* .dropdown-menu {
+    display: block;
+} */
+
+.logoutTogg {
+    display: inline-block;
+}
+
+th {
+    font-weight: normal;
 }
