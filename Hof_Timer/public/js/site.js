@@ -3,6 +3,7 @@ var pauseTimerButton = document.querySelector('.pauseTimer');
 var secondsCircle = document.querySelector('.secondCircle');
 var timerDisplay = document.querySelector('.timer');
 var totalTimerDisplay = document.querySelector('.timerTotal');
+
 var startTime;
 var totalStartTime;
 var updatedTime;
@@ -158,14 +159,14 @@ function getShowTime() {
         difference = updatedTime - startTime;
     }
 
-    var hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    //var hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
 
-    if (hours == 1) {
-        alert("One Hour!");
-    }
+    // if (hours == 1) {
+    //     alert("One Hour!");
+    // }
 
     minutes = (minutes < 10) ? "0" + minutes : minutes;
     seconds = (seconds < 10) ? "0" + seconds : seconds;
@@ -193,13 +194,13 @@ function totalTime() {
     var seconds = Math.floor((totalDifference % (1000 * 60)) / 1000);
 
 
-    if (hours == 1) {
-        alert("One Hour!");
-    }
-
     minutes = (minutes < 10) ? "0" + minutes : minutes;
     seconds = (seconds < 10) ? "0" + seconds : seconds;
 
-    totalTimerDisplay.innerHTML = minutes + ':' + seconds;
+    if (hours == 1) {
 
+        totalTimerDisplay.innerHTML = hours + ":" + minutes + ':' + seconds + "<br>One Hour! You Beast!";
+    } else {
+        totalTimerDisplay.innerHTML = hours + ":" + minutes + ':' + seconds;
+    }
 }

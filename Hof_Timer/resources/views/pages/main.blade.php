@@ -3,7 +3,7 @@
 @section('content')
 
 
-<div class="timerTotal">00:00</div>
+<div class="timerTotal">0:00:00<br></div>
 
 <div id="timerContainer">
 
