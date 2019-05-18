@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Raleway|Russo+One|Chivo|Baloo+Chettan" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Open+Sans|Overpass|Righteous&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href='{{asset('/css/bootstrap.min.css')}}'>
     <link rel="stylesheet" href='{{asset('/css/site.css')}}'>
     <script src="{{asset('/js/jquery.min.js')}}"></script>

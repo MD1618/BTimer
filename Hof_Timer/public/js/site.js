@@ -45,11 +45,15 @@ window.onload = function() {
 function startTimer() {
     secondsCircle.style.webkitAnimation = "";
     secondsCircle.style.webkitAnimationPlayState = "running";
+    if (tInterval == undefined) {
+        tInterval = setInterval(getShowTime, 1);
+        tIntervalTotal = setInterval(totalTime, 1);
+    }
+
     if (state == 0) {
         startTime = new Date().getTime();
 
-        tInterval = setInterval(getShowTime, 1);
-        tIntervalTotal = setInterval(totalTime, 1);
+
         // change 1 to 1000 above to run script every second instead of every millisecond. one other change will be needed in the getShowTime() function below for this to work. see comment there.   
 
 
@@ -70,19 +74,19 @@ function startTimer() {
         paused = 0;
         running = 1;
 
-        startTimerButton.innerHTML = "Hof";
+        startTimerButton.innerHTML = "HOF";
 
 
         //state = 1;
     } else if (state == 1) {
-        startTimerButton.innerHTML = "Hold";
+        startTimerButton.innerHTML = "HOLD";
         let hofCell = newRow.insertCell(1);
         var timerValue = timerDisplay.innerHTML;
         let timedValue = document.createTextNode(timerValue);
         hofCell.appendChild(timedValue);
         startTime = new Date().getTime();
     } else if (state == 2) {
-        startTimerButton.innerHTML = "Squeeze";
+        startTimerButton.innerHTML = "SQUEEZE";
         let holdCell = newRow.insertCell(2);
         var timerValue = timerDisplay.innerHTML;
         let timedValue = document.createTextNode(timerValue);
@@ -123,14 +127,26 @@ function pauseTimer() {
 
 function resetTimer() {
     secondsCircle.style.webkitAnimation = "none";
-    startTimerButton.innerHTML = "PLAY";
+    startTimerButton.innerHTML = "START";
 
     clearInterval(tInterval);
-    savedTime = 0;
-    difference = 0;
-    paused = 0;
-    running = 0;
+    clearInterval(tIntervalTotal);
+    tInterval = undefined;
+    tIntervalTotal = undefined;
+    state = 0;
+    totalTimerState = true;
+    round = 1;
+    // savedTime = 0;
+    // totalSavedTime = 0;
+    // startTime = 0;
+    // totalStartTime = 0;
+    // difference = 0;
+    // totalDifference = 0;
+    // paused = 0;
+    // running = 0;
     timerDisplay.innerHTML = '00:00';
+    totalTimerDisplay.innerHTML = '00:00';
+    tableRef.innerHTML = "";
 }
 
 function getShowTime() {
@@ -162,10 +178,10 @@ function totalTime() {
     if (totalTimerState) {
         totalStartTime = startTime
         totalTimerState = false;
-        console.log("1");
+
     }
     updatedTotalTime = new Date().getTime();
-    console.log("2");
+
 
 
 

@@ -14,3 +14,5 @@
 Route::get('/', function () {
     return view('pages.main');
 });
+
+Route::resource('sessions', 'HofSessionsController');

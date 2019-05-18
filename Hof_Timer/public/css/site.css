@@ -7,6 +7,9 @@ body {
     position: relative;
     width: 100%;
     height: 100vh;
+    /* font-family: 'Fjalla One', sans-serif; */
+    /* font-family: 'Righteous', cursive; */
+    font-family: 'Overpass', sans-serif;
 }
 
 .navHeader {
@@ -140,10 +143,15 @@ body {
     transform: translate(-50%, -50%);
     z-index: -1;
     background-color: rgba(0, 0, 0, 0.1);
+    /* font-family: 'Fjalla One', sans-serif; */
+    /* font-family: 'Righteous', cursive; */
+    font-family: 'Overpass', sans-serif;
 }
 
 #timerContainer {
-    font-family: 'Source Sans Pro', sans-serif;
+    /* font-family: 'Source Sans Pro', sans-serif; */
+    /* font-family: 'Righteous', cursive; */
+    font-family: 'Overpass', sans-serif;
     font-weight: 300;
     width: 100%;
     margin: 20px auto;
