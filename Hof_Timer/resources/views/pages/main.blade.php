@@ -38,12 +38,11 @@
 
 </div>
 
-<div id="buttonContainer">
 
-
+<div class="buttonContainer">
+    <div id="resetButton" class="resetTimer reset" onclick="resetTimer()">Reset</div>
+    <div id="pauseButton" class=" pause" style="" onclick="pauseTimer()">Pause</div>
+    <div id="saveButton" class=" save" style="" onclick="save()">Save</div>
 </div>
-
-{{-- <div class="resetTimer reset" onclick="resetTimer()">Reset</div> --}}
-<div class=" pause" style="" onclick="pauseTimer()">Pause</div>
 
 @stop

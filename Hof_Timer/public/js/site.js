@@ -41,8 +41,13 @@ window.onload = function() {
     round = 1;
 
     document.body.onkeydown = function(e) {
-        if (e.keyCode == 32) {
-            startTimer();
+
+        if (e.keyCode == 32) { // space bar starts and changes stages
+            if (paused == 0) { // prevent keyboard space bar when paused
+                startTimer();
+            }
+        } else if (e.keyCode == 80) { // key 'p' pauses
+            pauseTimer();
         }
     }
 }
@@ -52,12 +57,13 @@ function startTimer() {
     timerDisplay.style.opacity = "1";
     totalTimerDisplay.style.opacity = "1";
     document.querySelector('.roundsContainer').style.opacity = "0.8";
+    document.getElementById('pauseButton').style.opacity = "1";
     secondsCircle.style.webkitAnimation = "";
     secondsCircle.style.webkitAnimationPlayState = "running";
     if (tInterval == undefined) {
         tInterval = setInterval(getShowTime, 1);
         tIntervalTotal = setInterval(totalTime, 1);
-        // change 1 to 1000 above to run script every second instead of every millisecond. one other change will be needed in the getShowTime() function below for this to work. see comment there.   
+
     }
 
     savedTime = undefined;
@@ -115,6 +121,9 @@ function pauseTimer() {
         startTimerButton.innerHTML = "PAUSED";
         if (paused == 0) {
             document.getElementById('stageButton').onclick = null;
+            document.getElementById('resetButton').style.opacity = "1";
+            document.getElementById('saveButton').style.opacity = "1";
+            document.getElementById('pauseButton').innerHTML = "Unpause"
             timerDisplay.style.opacity = "0.3";
             totalTimerDisplay.style.opacity = "0.3";
             document.querySelector('.roundsContainer').style.opacity = "0.3";
@@ -128,6 +137,9 @@ function pauseTimer() {
             tIntervalTotal = undefined;
             paused = 1;
         } else {
+            document.getElementById('pauseButton').innerHTML = "Pause"
+            document.getElementById('resetButton').style.opacity = "0";
+            document.getElementById('saveButton').style.opacity = "0";
             document.getElementById('stageButton').onclick = startTimer;
             timerDisplay.style.opacity = "1";
             totalTimerDisplay.style.opacity = "1";
@@ -150,6 +162,8 @@ function pauseTimer() {
 }
 
 function resetTimer() {
+    pauseTimer();
+    document.getElementById('pauseButton').style.opacity = "0.3";
     secondsCircle.style.webkitAnimation = "none";
     startTimerButton.innerHTML = "START";
     savedTime = undefined;
@@ -165,6 +179,7 @@ function resetTimer() {
     totalTimerDisplay.innerHTML = '0:00:00';
     tableRef.innerHTML = "";
     started = undefined;
+
 }
 
 function getShowTime() {
