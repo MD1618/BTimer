@@ -7,7 +7,7 @@
 
 <div id="timerContainer">
 
-    <div class="secondCircle" onclick="startTimer()">
+    <div id="stageButton" class="secondCircle" onclick="startTimer()">
 
     </div>
 
@@ -43,7 +43,7 @@
 
 </div>
 
-<div class="resetTimer reset" onclick="resetTimer()">Reset</div>
-<div class=" reset" style="bottom:50px;" onclick="pauseTimer()">Pause</div>
+{{-- <div class="resetTimer reset" onclick="resetTimer()">Reset</div> --}}
+<div class=" pause" style="" onclick="pauseTimer()">Pause</div>
 
 @stop

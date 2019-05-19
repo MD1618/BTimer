@@ -15,6 +15,7 @@ var tIntervalTotal;
 var savedTime;
 var totalSavedTime;
 
+var started;
 var state = 0; // for tracking each stage of breathing exercise
 var totalTimerState;
 var round;
@@ -47,6 +48,10 @@ window.onload = function() {
 }
 
 function startTimer() {
+    started = 1;
+    timerDisplay.style.opacity = "1";
+    totalTimerDisplay.style.opacity = "1";
+    document.querySelector('.roundsContainer').style.opacity = "0.8";
     secondsCircle.style.webkitAnimation = "";
     secondsCircle.style.webkitAnimationPlayState = "running";
     if (tInterval == undefined) {
@@ -105,32 +110,42 @@ function addRowToArray() {
 }
 
 function pauseTimer() {
-    secondsCircle.style.webkitAnimationPlayState = "paused";
-    startTimerButton.innerHTML = "PAUSED";
-    if (paused == 0) {
-        clearInterval(tInterval);
-        clearInterval(tIntervalTotal);
-        savedTime = difference;
-        difference = 0;
-        totalSavedTime = totalDifference;
-        totalDifference = 0;
-        tInterval = undefined;
-        tIntervalTotal = undefined;
-        paused = 1;
-    } else {
-        secondsCircle.style.webkitAnimationPlayState = "running";
-        if (state == 1) {
-            startTimerButton.innerHTML = "BREATHE";
-        } else if (state == 2) {
-            startTimerButton.innerHTML = "HOLD";
-        } else if (state == 0) {
-            startTimerButton.innerHTML = "SQUEEZE";
+    if (started == 1) {
+        secondsCircle.style.webkitAnimationPlayState = "paused";
+        startTimerButton.innerHTML = "PAUSED";
+        if (paused == 0) {
+            document.getElementById('stageButton').onclick = null;
+            timerDisplay.style.opacity = "0.3";
+            totalTimerDisplay.style.opacity = "0.3";
+            document.querySelector('.roundsContainer').style.opacity = "0.3";
+            clearInterval(tInterval);
+            clearInterval(tIntervalTotal);
+            savedTime = difference;
+            difference = 0;
+            totalSavedTime = totalDifference;
+            totalDifference = 0;
+            tInterval = undefined;
+            tIntervalTotal = undefined;
+            paused = 1;
+        } else {
+            document.getElementById('stageButton').onclick = startTimer;
+            timerDisplay.style.opacity = "1";
+            totalTimerDisplay.style.opacity = "1";
+            document.querySelector('.roundsContainer').style.opacity = "0.8";
+            secondsCircle.style.webkitAnimationPlayState = "running";
+            if (state == 1) {
+                startTimerButton.innerHTML = "BREATHE";
+            } else if (state == 2) {
+                startTimerButton.innerHTML = "HOLD";
+            } else if (state == 0) {
+                startTimerButton.innerHTML = "SQUEEZE";
+            }
+            totalStartTime = new Date().getTime();
+            startTime = new Date().getTime();
+            tInterval = setInterval(getShowTime, 1);
+            tIntervalTotal = setInterval(totalTime, 1);
+            paused = 0;
         }
-        totalStartTime = new Date().getTime();
-        startTime = new Date().getTime();
-        tInterval = setInterval(getShowTime, 1);
-        tIntervalTotal = setInterval(totalTime, 1);
-        paused = 0;
     }
 }
 
@@ -149,6 +164,7 @@ function resetTimer() {
     timerDisplay.innerHTML = '00:00';
     totalTimerDisplay.innerHTML = '0:00:00';
     tableRef.innerHTML = "";
+    started = undefined;
 }
 
 function getShowTime() {
