@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\HofSession;
 
 class HofSessionsController extends Controller
 {
@@ -14,6 +17,10 @@ class HofSessionsController extends Controller
     public function index()
     {
         //
+        $hof_sessions = DB::table('hof_sessions')->get();
+        
+        //$hof_sessions = HofSession::all();
+        return view('/home')->with('hof_sessions', $hof_sessions);
     }
 
     /**

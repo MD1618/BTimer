@@ -15,8 +15,14 @@ class CreateHofSessionsTable extends Migration
     {
         Schema::create('hof_sessions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->String('session_time');
-            $table->String('hold_best_time');
+            $table->integer('user_name');
+            $table->integer('session_hour');
+            $table->integer('session_min');
+            $table->integer('session_sec');
+            $table->integer('hold_min');
+            $table->integer('hold_sec');
+            $table->integer('AVhold_min');
+            $table->integer('AVhold_sec');
             $table->timestamps();
         });
     }

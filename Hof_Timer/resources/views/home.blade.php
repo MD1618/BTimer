@@ -30,13 +30,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                           
-                        <tr>
-                            <td>12/05/2019 15:35:12</td>
-                            <td>45:12</td>
-                            <td>2:23</td>
-                            <td>2:01</td>
-                        </tr>
+                        {{-- @if(count($hof_sessions) > 1) --}}
+                            @foreach($hof_sessions as $hof_session)
+                                <tr>
+                                <td>{{ $hof_session->session_hour }}:{{ $hof_session->session_min }}:{{ $hof_session->session_sec }}</td>
+                                <td>{{ $hof_session->hold_min }}:{{ $hof_session->hold_sec }}</td>
+                                <td>{{ $hof_session->AVhold_min }}:{{ $hof_session->AVhold_sec }}</td>
+                                <td>blank</td>
+                                </tr>
+                            @endforeach
+
+                        {{-- @else
+                            <p>No posts.</p>
+                        @endif --}}
+
+                       
                     </tbody>
                 </table>
             </div>
