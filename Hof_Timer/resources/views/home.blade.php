@@ -21,19 +21,21 @@
                     Breathing Sessions
                 </div>
                 <table class="dashboardTable">
-                    <thead>
+                    <thead style="border-bottom:2px solid #333;">
                         <tr>
-                            <th>Session Date</th>
-                            <th>Session Duration</th>
+                            <th>Date</th>
+                            <th>Duration</th>
                             <th>Longest Hold</th>
-                            
+                            <th>Average Hold</th>
                         </tr>
                     </thead>
                     <tbody>
+                           
                         <tr>
                             <td>12/05/2019 15:35:12</td>
-                            <td>45mins 12seconds</td>
-                            <td>2mins 23seconds</td>
+                            <td>45:12</td>
+                            <td>2:23</td>
+                            <td>2:01</td>
                         </tr>
                     </tbody>
                 </table>
