@@ -25,10 +25,10 @@
     <table class="roundsTable ">
         <thead>
             <tr>
-                <th>ROUND</th>
-                <th>BREATH</th>
-                <th>HOLD</th>
-                <th>SQUEEZE</th>
+                <th>Round</th>
+                <th>Breath</th>
+                <th>Hold</th>
+                <th>Squeeze</th>
             </tr>
         </thead>
         <tbody id="tableBody">
@@ -44,5 +44,6 @@
 </div>
 
 <div class="resetTimer reset" onclick="resetTimer()">Reset</div>
+<div class=" reset" style="bottom:50px;" onclick="pauseTimer()">Pause</div>
 
 @stop

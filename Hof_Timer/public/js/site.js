@@ -15,12 +15,12 @@ var tIntervalTotal;
 var savedTime;
 var totalSavedTime;
 
-var state = 0;
+var state = 0; // for tracking each stage of breathing exercise
 var totalTimerState;
 var round;
 let tableRef;
 let newRow;
-
+var paused;
 var holdTimes = [];
 var minValue;
 var secValue;
@@ -55,6 +55,7 @@ function startTimer() {
         // change 1 to 1000 above to run script every second instead of every millisecond. one other change will be needed in the getShowTime() function below for this to work. see comment there.   
     }
 
+    savedTime = undefined;
     if (state == 0) {
         startTime = new Date().getTime();
         if (round > 1) {
@@ -105,20 +106,39 @@ function addRowToArray() {
 
 function pauseTimer() {
     secondsCircle.style.webkitAnimationPlayState = "paused";
-    startTimerButton.innerHTML = "PLAY";
-    if (!difference) {
-        // if timer never started, don't allow pause button to do anything
-    } else if (!paused) {
+    startTimerButton.innerHTML = "PAUSED";
+    if (paused == 0) {
         clearInterval(tInterval);
+        clearInterval(tIntervalTotal);
         savedTime = difference;
-
+        difference = 0;
+        totalSavedTime = totalDifference;
+        totalDifference = 0;
+        tInterval = undefined;
+        tIntervalTotal = undefined;
+        paused = 1;
+    } else {
+        secondsCircle.style.webkitAnimationPlayState = "running";
+        if (state == 1) {
+            startTimerButton.innerHTML = "BREATHE";
+        } else if (state == 2) {
+            startTimerButton.innerHTML = "HOLD";
+        } else if (state == 0) {
+            startTimerButton.innerHTML = "SQUEEZE";
+        }
+        totalStartTime = new Date().getTime();
+        startTime = new Date().getTime();
+        tInterval = setInterval(getShowTime, 1);
+        tIntervalTotal = setInterval(totalTime, 1);
+        paused = 0;
     }
 }
 
 function resetTimer() {
     secondsCircle.style.webkitAnimation = "none";
     startTimerButton.innerHTML = "START";
-
+    savedTime = undefined;
+    totalSavedTime = undefined;
     clearInterval(tInterval);
     clearInterval(tIntervalTotal);
     tInterval = undefined;
@@ -167,9 +187,13 @@ function totalTime() {
 
 
 
+    if (totalSavedTime) {
+        totalDifference = (updatedTotalTime - totalStartTime) + totalSavedTime;
+    } else {
+        totalDifference = updatedTotalTime - totalStartTime;
+    }
 
-    totalDifference = updatedTotalTime - totalStartTime;
-
+    //console.log(totalDifference);
 
     var hours = Math.floor((totalDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     var minutes = Math.floor((totalDifference % (1000 * 60 * 60)) / (1000 * 60));
