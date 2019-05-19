@@ -49,6 +49,14 @@ window.onload = function() {
         } else if (e.keyCode == 80) { // key 'p' pauses
             pauseTimer();
         }
+
+        if (e.keyCode == 82 && paused == 1) { // if paused 'r' key resets timer
+            resetTimer();
+        }
+
+        if (e.keyCode == 83 && paused == 1) { // if paused 's' key saves session
+            save();
+        }
     }
 }
 
@@ -255,5 +263,8 @@ function toggleLogOut(user) {
 
 }
 
-
-/// ---------------------
+function save() {
+    console.log("saved");
+    resetTimer();
+    window.location.href = "/home";
+}
