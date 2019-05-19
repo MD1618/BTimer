@@ -350,3 +350,8 @@ th {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.dashboardTable {
+    width: 100%;
+    margin: 30px;
+}
