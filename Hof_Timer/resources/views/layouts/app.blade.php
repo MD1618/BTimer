@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Open+Sans|Righteous|Roboto+Condensed&display=swap" rel="stylesheet"> 
-    
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Open+Sans|Righteous|Roboto+Condensed&display=swap"
+        rel="stylesheet">
+
     <title>Breathing Tracker</title>
 
 
@@ -14,8 +16,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    
-    
+
+
     <script src="{{asset('/js/jquery.js')}}" defer></script>
     <script src="{{asset('/js/bootstrap.js')}}" defer></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -29,52 +31,66 @@
     <link rel="stylesheet" href='{{asset('/css/bootstrap.css')}}'>
     <link rel="stylesheet" href='{{asset('/css/site.css')}}'>
 </head>
+
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark   shadow-sm">
+
+
+        <div id="menuModalGuest" class="menuModal" onclick="toggleLogOut();">
+
+            <div class="innerMenuModal">
+
+
+                <a class="modalLink" href="{{ route('login') }}">{{ __('Login') }}</a>
+                <hr/>
+                @if (Route::has('register'))
+                <a class="modalLink" href="{{ route('register') }}">{{ __('Register') }}</a>
+                @endif
+
+                {{-- <button class="menuModalCloseButton" onclick="toggleLogOut();">Close</button> --}}
+            </div>
+        </div>
+
+        <div id="menuModalLoggedIn" class="menuModal" onclick="toggleLogOut();">
+            <div class="innerMenuModal">
+
+                <a class="modalLink" href="/home">DashBoard</a>
+                <hr/>
+                <a class="modalLink" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+                
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+                {{-- <button class="menuModalCloseButton" onclick="toggleLogOut();">Close</button> --}}
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-md navbar-dark">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     B-Timer
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                 
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="toggleLogOut('guest');">Guest</a>
+                        </li>
                         @else
-                            <li class="nav-item " onclick="toggleLogOut();">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" >
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div id="logOutButton" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a href="/home">DashBoard</a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
+                        <li class="nav-item " onclick="toggleLogOut('user');">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+                        </li>
                         @endguest
                     </ul>
                 </div>
@@ -86,4 +102,5 @@
         </main>
     </div>
 </body>
+
 </html>

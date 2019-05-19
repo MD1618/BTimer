@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    Breathing Sessions 
                 </div>
             </div>
         </div>

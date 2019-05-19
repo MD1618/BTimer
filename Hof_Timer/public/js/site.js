@@ -242,7 +242,18 @@ function totalTime() {
     }
 }
 
-function toggleLogOut() {
+function toggleLogOut(user) {
 
-    var logout = document.getElementById('logOutButton').classList.toggle('logoutTogg');
+
+    if (user == 'guest') {
+        var logout = document.getElementById('menuModalGuest').classList.toggle('menuTogg');
+
+    } else {
+        var logout = document.getElementById('menuModalLoggedIn').classList.toggle('menuTogg');
+
+    }
+
 }
+
+
+/// ---------------------
