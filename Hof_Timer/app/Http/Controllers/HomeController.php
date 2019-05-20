@@ -33,8 +33,5 @@ class HomeController extends Controller
         return view('/home')->with('hof_sessions', $hof_sessions);
     }
 
-    public function ajaxTest()
-    {
-        return "test text working" ;
-    }
+
 }
