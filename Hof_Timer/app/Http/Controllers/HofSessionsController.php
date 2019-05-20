@@ -31,6 +31,7 @@ class HofSessionsController extends Controller
     public function create()
     {
         //
+        return "works";
     }
 
     /**
@@ -42,6 +43,8 @@ class HofSessionsController extends Controller
     public function store(Request $request)
     {
         //
+        
+        return response('Hello World', 200);
     }
 
     /**

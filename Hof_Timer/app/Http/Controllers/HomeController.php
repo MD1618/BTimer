@@ -32,4 +32,9 @@ class HomeController extends Controller
         //$hof_sessions = HofSession::all();
         return view('/home')->with('hof_sessions', $hof_sessions);
     }
+
+    public function ajaxTest()
+    {
+        return "test text working" ;
+    }
 }

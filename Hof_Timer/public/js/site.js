@@ -263,8 +263,45 @@ function toggleLogOut(user) {
 
 }
 
+
+function sessionDuration() {
+
+}
+
+function session_best_hold() {
+
+
+}
+
+function session_avg_hold() {
+
+}
+
+
 function save() {
     console.log("saved");
     resetTimer();
-    window.location.href = "/home";
+    //window.location.href = "/home";
 }
+
+var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+$("#saveButton").click(function() {
+
+    $.ajax({
+        type: 'POST',
+        url: '/home/ajaxTest',
+        data: {
+            _token: CSRF_TOKEN
+
+        },
+        dataType: 'text',
+        success: function(data) {
+            console.log("success", data);
+        },
+        error: function(data) {
+            //var errors = $.parseJSON(data.responseText);
+            console.log("fail");
+            console.log(data);
+        }
+    });
+});
