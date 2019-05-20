@@ -27,6 +27,9 @@ var minValue;
 var secValue;
 
 window.onload = function() {
+
+    TweenMax.from(".innerCircle", 1.5, { opacity: "0", y: "-250%", ease: Bounce.easeOut });
+
     tableRef = document.getElementById('tableBody');
 
     startTimerButton = document.querySelector('.startTimer');
@@ -237,7 +240,9 @@ function totalTime() {
     var hours = Math.floor((totalDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     var minutes = Math.floor((totalDifference % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((totalDifference % (1000 * 60)) / 1000);
-
+    sessionTimeHour = hours;
+    sessionTimeMin = minutes;
+    sessionTimesec = seconds;
 
     minutes = (minutes < 10) ? "0" + minutes : minutes;
     seconds = (seconds < 10) ? "0" + seconds : seconds;
@@ -263,6 +268,9 @@ function toggleLogOut(user) {
 
 }
 
+var sessionTimeHour = 0;
+var sessionTimeMin = 0;
+var sessionTimesec = 0;
 
 function sessionDuration() {
 
@@ -279,24 +287,26 @@ function session_avg_hold() {
 
 
 function save() {
-    console.log("saved");
-    resetTimer();
-    //window.location.href = "/home";
-}
+    //console.log("saved");
 
-var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-$("#saveButton").click(function() {
+    //window.location.href = "/home";
 
     $.ajax({
         type: 'POST',
-        url: '/home/ajaxTest',
+        url: '/ajaxRequests/ajaxTest',
         data: {
-            _token: CSRF_TOKEN
+            _token: CSRF_TOKEN,
+            'min': holdTimes[0].min,
+            'sec': holdTimes[0].sec,
+            'THour': sessionTimeHour,
+            'TMin': sessionTimeMin,
+            'TSec': sessionTimesec
 
         },
         dataType: 'text',
         success: function(data) {
             console.log("success", data);
+
         },
         error: function(data) {
             //var errors = $.parseJSON(data.responseText);
@@ -304,4 +314,13 @@ $("#saveButton").click(function() {
             console.log(data);
         }
     });
-});
+
+
+    //resetTimer();
+}
+
+var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+// $("#saveButton").click(function() {
+
+
+// });
