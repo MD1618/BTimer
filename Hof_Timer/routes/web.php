@@ -20,5 +20,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('/home/ajaxTest', 'HomeController@ajaxTest');
+Route::post('/ajaxRequests/ajaxTest', 'ajaxRequestsController@ajaxTest');
 //Route::post('/home/ajaxTest/{$test}', 'HomeController@ajaxTest');
