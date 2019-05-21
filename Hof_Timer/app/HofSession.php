@@ -9,24 +9,28 @@ class HofSession extends Model
     // table name
     protected $table = 'hof_sessions';
 
+    protected $fillable = array('user', 'session_hour','session_min','session_sec','hold_min','hold_sec','AVhold_min','AVhold_sec');
+
     // primary key
-    public $primaryKey = 'id';
-    
+    //protected $primaryKey = 'id';
+
     // user name
-    public $user_name = 'user';
+    protected $user = 'user';
 
     // session duration
-    public $session_hour = 0;
-    public $session_min = 0;
-    public $session_sec = 0;
-    
+    protected $session_hour = 'session_hour';
+    protected $session_min = 'session_min';
+    protected $session_sec = 'session_sec';
+
     // longest hold
-    public $hold_min = 0;
-    public $hold_sec = 0;
+    protected $hold_min = 'hold_min';
+    protected $hold_sec = 'hold_sec';
 
     // average hold
-    public $AVhold_min = 0;
-    public $AVhold_sec = 0;
+    protected $AVhold_min = 'AVhold_min';
+    protected $AVhold_sec = 'AVhold_sec';
+
+    
 
 
     // TimeStamps
