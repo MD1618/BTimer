@@ -342,7 +342,7 @@ function save() {
 
     $.ajax({
         type: 'POST',
-        url: '/ajaxRequests/ajaxSaveTimes',
+        url: "ajaxRequests/ajaxSaveTimes",
         data: {
             _token: CSRF_TOKEN,
             'HMin': best_hold_min,
@@ -358,7 +358,7 @@ function save() {
         success: function(data) {
             console.log("ajax success");
             //console.log("success", data);
-            window.location.href = "/home";
+            window.location.href = "/timer/home";
 
         },
         error: function(data) {
@@ -383,7 +383,7 @@ function deleteSession(id) {
 
         $.ajax({
             type: 'POST',
-            url: '/ajaxRequests/ajaxDeleteSession/' + id,
+            url: 'ajaxRequests/ajaxDeleteSession/' + id,
             data: {
                 _token: CSRF_TOKEN
 
@@ -392,7 +392,7 @@ function deleteSession(id) {
             success: function(data) {
                 //console.log("ajax success");
                 //console.log("success", data);
-                window.location.href = "/home";
+                window.location.href = "/timer/home";
 
             },
             error: function(data) {
