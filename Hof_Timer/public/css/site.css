@@ -354,10 +354,22 @@ th {
 .dashboardTable {
     width: calc(100% - 20px);
     margin: 10px;
-    table-layout: fixed;
+    /* table-layout: fixed; */
 }
 
 .dashboardTable th,
 td {
     padding: 5px;
+}
+
+.deleteIcon {
+    background-image: url('/images/trash-512.png');
+    width: 40px;
+    height: 20px;
+    margin-top: 5px;
+    /* background-color: #fff; */
+    background-size: 18px 18px;
+    background-repeat: no-repeat;
+    background-position: 5px 12px;
+    cursor: pointer;
 }

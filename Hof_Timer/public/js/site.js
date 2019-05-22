@@ -103,7 +103,10 @@ function startTimer() {
 
         //push minutes and seconds as individual values to an array object
         holdTimes.push({ min: minValue, sec: secValue });
-        console.log(holdTimes[round - 1].min + ":" + holdTimes[round - 1].sec);
+        //console.log(holdTimes[round - 1].min + ":" + holdTimes[round - 1].sec);
+
+        session_best_hold();
+        session_avg_hold();
 
         startTimerButton.innerHTML = "SQUEEZE";
         let holdCell = newRow.insertCell(2);
@@ -190,7 +193,14 @@ function resetTimer() {
     totalTimerDisplay.innerHTML = '0:00:00';
     tableRef.innerHTML = "";
     started = undefined;
-
+    avg_hold_min = 0;
+    avg_hold_sec = 0;
+    sessionTimeHour = 0;
+    sessionTimeMin = 0;
+    sessionTimesec = 0;
+    best_hold_min = 0;
+    best_hold_sec = 0;
+    holdTimes = [];
 }
 
 function getShowTime() {
@@ -284,12 +294,19 @@ function session_best_hold() {
 
 
     for (i = 0; i < holdTimes.length; i++) {
-        console.log("before if");
-        if (holdTimes[i].min >= best_hold_min && holdTimes[i].sec >= best_hold_sec) {
-            best_hold_min = holdTimes[i].min;
-            best_hold_sec = holdTimes[i].sec;
-            console.log("in if");
+        if (holdTimes[i].min >= best_hold_min) {
+            if (holdTimes[i].sec >= best_hold_sec) {
+                best_hold_min = holdTimes[i].min;
+                best_hold_sec = holdTimes[i].sec;
+                //console.log(best_hold_min + " : " + best_hold_sec);
+            }
         }
+
+        // if (holdTimes[i].min >= best_hold_min && holdTimes[i].sec >= best_hold_sec) {
+        //     best_hold_min = holdTimes[i].min;
+        //     best_hold_sec = holdTimes[i].sec;
+
+        // }
 
     }
 
@@ -300,14 +317,29 @@ var avg_hold_sec = 0;
 
 function session_avg_hold() {
 
+    var mins = 0;
+    var tempSec = 0;
+
+    for (i = 0; i < holdTimes.length; i++) {
+        mins += holdTimes[i].min;
+        tempSec += holdTimes[i].sec;
+    }
+
+    console.log("totals: " + mins + " : " + tempSec);
+    var minSecs = mins * 60;
+    var totsAvg = (minSecs + tempSec) / holdTimes.length;
+    avg_hold_min = Math.floor(totsAvg / 60);
+    avg_hold_sec = totsAvg % 60;
+    //console.log(mins + " " + totsAvg);
+    console.log("averaged: " + avg_hold_min + " : " + avg_hold_sec);
 }
 
 
 function save() {
     //console.log("saved");
 
-    //window.location.href = "/home";
-    session_best_hold();
+    //
+
     $.ajax({
         type: 'POST',
         url: '/ajaxRequests/ajaxSaveTimes',
@@ -324,7 +356,9 @@ function save() {
         },
         dataType: 'text',
         success: function(data) {
-            console.log("success", data);
+            console.log("ajax success");
+            //console.log("success", data);
+            window.location.href = "/home";
 
         },
         error: function(data) {
@@ -336,10 +370,36 @@ function save() {
 
 
     //resetTimer();
+
 }
 
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-// $("#saveButton").click(function() {
 
 
-// });
+function deleteSession(id) {
+    //console.log("delete function " + id);
+    if (confirm("Delete Session?")) {
+
+
+        $.ajax({
+            type: 'POST',
+            url: '/ajaxRequests/ajaxDeleteSession/' + id,
+            data: {
+                _token: CSRF_TOKEN
+
+            },
+            dataType: 'text',
+            success: function(data) {
+                //console.log("ajax success");
+                //console.log("success", data);
+                window.location.href = "/home";
+
+            },
+            error: function(data) {
+                //var errors = $.parseJSON(data.responseText);
+                console.log("fail");
+                console.log(data);
+            }
+        });
+    }
+}

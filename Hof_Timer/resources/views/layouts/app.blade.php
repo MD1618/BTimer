@@ -8,13 +8,18 @@
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Open+Sans|Righteous|Roboto+Condensed&display=swap"
         rel="stylesheet">
 
-    <title>Breathing Tracker</title>
+    <title>Breathing Timer</title>
 
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
+
+<!-- Styles -->
+<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+<link rel="stylesheet" href='{{asset('/css/bootstrap.css')}}'>
+<link rel="stylesheet" href='{{asset('/css/site.css')}}'>
 
     <!-- Scripts -->
 
@@ -28,10 +33,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href='{{asset('/css/bootstrap.css')}}'>
-    <link rel="stylesheet" href='{{asset('/css/site.css')}}'>
+    
 </head>
 
 <body>
@@ -39,35 +41,26 @@
 
 
         <div id="menuModalGuest" class="menuModal" onclick="toggleLogOut();">
-
             <div class="innerMenuModal">
-
-
                 <a class="modalLink" href="{{ route('login') }}">{{ __('Login') }}</a>
                 <hr/>
                 @if (Route::has('register'))
                 <a class="modalLink" href="{{ route('register') }}">{{ __('Register') }}</a>
                 @endif
-
-                {{-- <button class="menuModalCloseButton" onclick="toggleLogOut();">Close</button> --}}
             </div>
         </div>
 
         <div id="menuModalLoggedIn" class="menuModal" onclick="toggleLogOut();">
             <div class="innerMenuModal">
-
-                <a class="modalLink" href="/home">DashBoard</a>
+                <a class="modalLink" href="/home">History</a>
                 <hr/>
                 <a class="modalLink" href="{{ route('logout') }}" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
                     {{ __('Logout') }}
                 </a>
-                
-
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
-                {{-- <button class="menuModalCloseButton" onclick="toggleLogOut();">Close</button> --}}
             </div>
         </div>
 
@@ -76,13 +69,8 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     B-Timer
                 </a>
-
                 <div class="" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-
-                    <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
                         @guest
                         <li class="nav-item">
                             <a class="nav-link" href="#" onclick="toggleLogOut('guest');">Guest</a>

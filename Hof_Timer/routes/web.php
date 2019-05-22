@@ -20,5 +20,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('/ajaxRequests/ajaxTest', 'ajaxRequestsController@ajaxTest');
+Route::post('/ajaxRequests/ajaxSaveTimes', 'ajaxRequestsController@ajaxSaveTimes');
 //Route::post('/home/ajaxTest/{$test}', 'HomeController@ajaxTest');
+
+Route::post('/ajaxRequests/ajaxDeleteSession/{id}', 'ajaxRequestsController@ajaxDeleteSession');
