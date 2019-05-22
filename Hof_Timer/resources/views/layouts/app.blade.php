@@ -52,7 +52,7 @@
 
         <div id="menuModalLoggedIn" class="menuModal" onclick="toggleLogOut();">
             <div class="innerMenuModal">
-                <a class="modalLink" href="/home">History</a>
+                <a class="modalLink" href="/timer/home">History</a>
                 <hr/>
                 <a class="modalLink" href="{{ route('logout') }}" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
