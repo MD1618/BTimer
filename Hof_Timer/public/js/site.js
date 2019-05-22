@@ -25,9 +25,9 @@ var paused;
 var holdTimes = [];
 var minValue;
 var secValue;
-
+var CSRF_TOKEN;
 window.onload = function() {
-
+    CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
     TweenMax.from(".innerCircle", 1.5, { opacity: "0", y: "-250%", ease: Bounce.easeOut });
 
     tableRef = document.getElementById('tableBody');
@@ -276,10 +276,27 @@ function sessionDuration() {
 
 }
 
+
+var best_hold_min = 0;
+var best_hold_sec = 0;
+
 function session_best_hold() {
 
 
+    for (i = 0; i < holdTimes.length; i++) {
+        console.log("before if");
+        if (holdTimes[i].min >= best_hold_min && holdTimes[i].sec >= best_hold_sec) {
+            best_hold_min = holdTimes[i].min;
+            best_hold_sec = holdTimes[i].sec;
+            console.log("in if");
+        }
+
+    }
+
 }
+
+var avg_hold_min = 0;
+var avg_hold_sec = 0;
 
 function session_avg_hold() {
 
@@ -290,17 +307,19 @@ function save() {
     //console.log("saved");
 
     //window.location.href = "/home";
-
+    session_best_hold();
     $.ajax({
         type: 'POST',
-        url: '/ajaxRequests/ajaxTest',
+        url: '/ajaxRequests/ajaxSaveTimes',
         data: {
             _token: CSRF_TOKEN,
-            'min': holdTimes[0].min,
-            'sec': holdTimes[0].sec,
+            'HMin': best_hold_min,
+            'HSec': best_hold_sec,
             'THour': sessionTimeHour,
             'TMin': sessionTimeMin,
-            'TSec': sessionTimesec
+            'TSec': sessionTimesec,
+            'AVHMin': avg_hold_min,
+            'AVHSec': avg_hold_sec
 
         },
         dataType: 'text',
