@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\HofSession;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ajaxRequestsController extends Controller
 {
@@ -33,5 +34,17 @@ class ajaxRequestsController extends Controller
 
         $hofSession->save();
         return response($hofSession, 200);
+    }
+
+     /**
+     * delete hof session
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function ajaxDeleteSession(Request  $request, $id)
+    {
+        $status = DB::table('hof_sessions')->where('id',$id)->delete();
+        return response("working ".$status, 200);
     }
 }
