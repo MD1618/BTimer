@@ -103,7 +103,7 @@ function startTimer() {
 
         //push minutes and seconds as individual values to an array object
         holdTimes.push({ min: minValue, sec: secValue });
-        //console.log(holdTimes[round - 1].min + ":" + holdTimes[round - 1].sec);
+        console.log("holds: " + holdTimes[round - 1].min + ":" + holdTimes[round - 1].sec);
 
         session_best_hold();
         session_avg_hold();
