@@ -1,5 +1,7 @@
 # BTimer
-Breathing Timer
+Breathing Timer -
+
+http://mdrahony.online/timer/
 
 If you don't know who Wim Hoff is then app won't make much sense out of the box.
 
